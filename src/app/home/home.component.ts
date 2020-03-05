@@ -10,7 +10,12 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  
+
+
+    for (var i=0; i<9;i++){
+      
+    }
+
   }
 
 
