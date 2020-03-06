@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { stringify } from 'querystring';
+
 
 @Component({
   selector: 'app-tic-tac-toe',
@@ -6,20 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tic-tac-toe.component.css']
 })
 export class TicTacToeComponent implements OnInit {
-  allPicked =[]; 
+  table = ["","","","","","","","",""];
   player = false; // false == X    true == O
-  newGame = false;
+ 
   sign;
+  
 
 
   constructor() { }
 
 
 
-  resetGame(){
-    this.newGame = true;
-    this.allPicked = [];
+  resetGame(): void {
    
+    var id : string;
+    document.getElementById("1").innerHTML;
+    for (var i =0;i<this.table.length;i++){
+   
+        id = String(i);
+      this.table[i]= "";
+      document.getElementById(id).innerHTML = "";
+    }
+    
+    
   }
 
   currentPlayer(){
@@ -36,18 +47,16 @@ export class TicTacToeComponent implements OnInit {
 
   draw($event){
     this.currentPlayer();
+
     
+
+    $event.toElement.innerText = this.table[0];
     if($event.toElement.innerText == ""){
-      $event.toElement.innerText = this.sign
+      $event.toElement.innerText = this.sign;
     }
     
 
-    if(this.newGame == true){
-      for( var i = 0;i < this.allPicked.length; ++i ){
-        $event.toElement.innerText = "";
-      }
-    }
-    this.newGame = false
+    
   }
 
 
@@ -55,15 +64,11 @@ export class TicTacToeComponent implements OnInit {
     this.draw($event);
     var picked =$event.srcElement.id;
     
-   
-    this.allPicked.push(picked);
-    console.log(picked);
-    console.log(this.allPicked);
   }
 
-  ngOnInit() {
-   console.log(document.getElementById("player1"));
 
+  ngOnInit() {
+  
   }
 
 }
